@@ -40,33 +40,45 @@ const UserDeck = ({ boardDeck, setDeck, playedCards, setPlayedCards }) => {
 export default UserDeck;
 
 const Container = styled.div`
-    height: 100%;
+    // height: 80vh;
+    // height: 100%;
     display: flex;
+    background-color: #0c2e49;
 `
 
-const PlayerContainer = styled.div`
+export const PlayerContainer = styled.div`
 
-  display: grid;
-  grid-template-columns: repeat(14, 15px);
-  grid-gap: 2px;
   align-items: center;  
-    display: grid;
-    grid-template-columns: repeat(14, 15px);
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    align-content: flex-end;
+    // flex-direction: column-reverse;
     grid-gap: 0.2rem;
-    justify-content: end;
-    
+    justify-content: center;
     @media screen and (max-device-width: 480px) and (orientation: portrait) {
       display: flex;
       grid-gap: 0.1rem;
-  }
+      }
   
 `;
 
-const UserCard = styled.div`
+export const PlayerContainer2 = styled.div`
+
+  align-items: center;  
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 0.2rem;
+    justify-content: center;
+    // background-color: #0c2e68;
+    @media screen and (max-device-width: 480px) and (orientation: portrait) {
+      display: flex;
+      grid-gap: 0.1rem;
+      }
+`;
+
+export const UserCard = styled.div`
   // transform: ${(props) => (props.ismoving === 'true' && `translate(${props.newposition.left}px, ${props.newposition.top}px)`)};
   // transition: transform 1s ease;
   cursor: pointer;
@@ -75,13 +87,19 @@ const UserCard = styled.div`
     cursor: pointer;
   }
 `;
+export const UserCard1 = styled.div`
+  cursor: pointer;
+  margin-right: -35px
 
-const UserCardImage = styled.img`
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export const UserCardImage = styled.img`
 
 --card-width: ${card_width_l};
 --card-width: ${card_width_l};
-
-  // box-shadow: ${(props) => (props.ismoving === 'true' && `2px 2px 2px 2px #00000077`)};
 
   width: var(--card-width);
   height: calc(var(--card-width) * 1.5);

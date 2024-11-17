@@ -1,19 +1,19 @@
 import React from "react";
+import {PlayerContainer2, UserCard1, UserCardImage} from "../userDeck/UserDeck";
 import "./Played.css";
-import cards from "../../../constants/cards";
 
 const Played = ({ playedCards }) => {
   return (
-    <div className="your__cards">
+    <PlayerContainer2>
       {playedCards.map((card) => (
-        <div className="card leftlap">
-          <img
+        <UserCard1>
+          <UserCardImage
             src={require(`../../../assets/deck/${card.cardName}`)}
             alt="me"
           />
-        </div>
+        </UserCard1>
       ))}
-    </div>
+    </PlayerContainer2>
   );
 };
 

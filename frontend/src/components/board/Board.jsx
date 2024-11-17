@@ -14,7 +14,7 @@ const Board = () => {
 
   return (
     <PlayerContainer>
-      {/* <Played playedCards={playedCards} /> */}
+      <Played playedCards={playedCards} />
       <MyDeck
         boardDeck={deck}
         setDeck={setDeck}
@@ -28,6 +28,11 @@ const Board = () => {
 export default Board;
 
 const PlayerContainer = styled.div`
+height: 93vh;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+background-color: #0c2e49;
 
   &.player1 {
     grid-area: player1;
