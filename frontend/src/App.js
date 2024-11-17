@@ -1,12 +1,12 @@
 import React from "react";
 import Board from "./components/board/Board";
-import Header from "./components/header/Header";
+import BoardHeader from "./components/header/BoardHead";
 //
 
 function App() {
   return (
     <>
-      <Header />
+      <BoardHeader />
       <Board />
       {/* <Footer /> */}
       {/* Change */}
