@@ -5,36 +5,56 @@ import {card_width_l, card_width_s} from "../../../constants/sizes";
 
 let updatedDeck;
 
-const UserDeck = ({ boardDeck, setDeck, playedCards, setPlayedCards }) => {
+const UserDeck = ({ boardDeck, setDeck, playedCards, setPlayedCards, player1cards, setPlayer1cards,visibility }) => {
+
   const OnCardPlayedHandler = (card) => {
     console.log(playedCards);
-    console.log(card);
     if (playedCards.length < 2) {
       setPlayedCards([...playedCards, card]);
     } else if (playedCards[playedCards.length - 1].cardSign === card.cardSign) {
+      setPlayer1cards([...player1cards, ...playedCards, card]);
       setPlayedCards([]);
     } else {
       setPlayedCards([...playedCards, card]);
     }
     setDeck(boardDeck.filter((c) => c.id !== card.id));
+
+  //   setTimeout(() => {
+  //      let cpuCard = cpuPlayAutomatically();
+
+  //   if (playedCards.length < 2) {
+  //     setPlayedCards([...playedCards, cpuCard]);
+  //   } else if (playedCards[playedCards.length - 1].cardSign === cpuCard.cardSign) {
+  //     setPlayedCards([]);
+  //   } else {
+  //     setPlayedCards([...playedCards, cpuCard]);
+  //   }
+  //   setDeck(boardDeck.filter((c) => c.id !== cpuCard.id));
+  // }, 2000); 
+    
   };
+
 
   const cpuPlayAutomatically = () => {
-    // let card = deck[0];
-    // return card;
+    let card = boardDeck[0];
+    return card;
   };
-
+  
   return (
     <Container>
       <PlayerContainer>
-      {boardDeck.map((card) => (
-        <UserCard onClick={() => OnCardPlayedHandler(card)}>
-          <UserCardImage src={require(`../../../assets/deck/pass1.jpg`)} alt="me" />
-        </UserCard>
-      ))}
+        {(boardDeck.length > 0 ? boardDeck : player1cards).map((card) => (
+          <UserCard onClick={() => OnCardPlayedHandler(card)} key={card.id}>
+            <UserCardImage 
+              src={require(`../../../assets/deck/${visibility === "visible" ? card.cardName : 'pass1.jpg'}`)} 
+              alt="card" 
+            />
+            </UserCard>
+          ))}
       </PlayerContainer>
-    </Container>
-  );
+      </Container>
+);
+
 };
 
 export default UserDeck;
@@ -79,9 +99,8 @@ export const PlayerContainer2 = styled.div`
 `;
 
 export const UserCard = styled.div`
-  // transform: ${(props) => (props.ismoving === 'true' && `translate(${props.newposition.left}px, ${props.newposition.top}px)`)};
-  // transition: transform 1s ease;
   cursor: pointer;
+  transition: transform 0.2s ease-in-out;  // Smooth transition for transform
 
   &:hover {
     cursor: pointer;
@@ -120,3 +139,29 @@ export const UserCardImage = styled.img`
 
 
 `;
+
+
+
+
+// const OnCardPlayedHandler = (card) => {
+//   // Handle the player's card play
+//   const updatePlayedCards = (newCard) => {
+//     if (playedCards.length < 2) {
+//       return [...playedCards, newCard];
+//     } else if (playedCards[playedCards.length - 1].cardSign === newCard.cardSign) {
+//       return []; // Reset if the last two cards have the same cardSign
+//     } else {
+//       return [...playedCards, newCard];
+//     }
+//   };
+
+//   setPlayedCards(updatePlayedCards(card));
+  
+//   // setTimeout(() => {
+//     // let cpuCard = cpuPlayAutomatically();
+
+//     // setPlayedCards(updatePlayedCards(cpuCard));
+
+//     // setDeck(boardDeck.filter((c) => c.id !== cpuCard.id));
+//   // }, 2000); //
+// };

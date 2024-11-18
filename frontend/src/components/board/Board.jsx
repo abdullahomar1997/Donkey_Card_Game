@@ -4,22 +4,30 @@ import cards from "../../constants/cards";
 import shuffleArray from "../../utils/shuffleArray";
 import "./Board.css";
 import Played from "./played/Played";
+import Score from "./Score";
 import MyDeck from "./userDeck/UserDeck";
 
 const Board = () => {
   const [playedCards, setPlayedCards] = useState([]);
   const [deck, setDeck] = useState(shuffleArray(cards()));
+  const [player1cards, setPlayer1cards] = useState([]);
+  const [player2cards, setPlayer2cards] = useState([]);
+
 
   useEffect(() => {}, []);
 
   return (
     <PlayerContainer>
+      <Score myScore={player1cards.length} cpuScore={player2cards.length} />  
       <Played playedCards={playedCards} />
       <MyDeck
         boardDeck={deck}
         setDeck={setDeck}
+        visibility={deck.length > 0 ? "hidden" : "visible"}
         playedCards={playedCards}
         setPlayedCards={setPlayedCards}
+        player1cards={player1cards}
+        setPlayer1cards={setPlayer1cards}
       />
     </PlayerContainer>
   );

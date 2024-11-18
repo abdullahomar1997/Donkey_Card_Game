@@ -38,6 +38,8 @@ const cards = () => {
                 player: "",
                 upperCardId: (index) - 4,
                 lowerCardId: (index) + 4,
+                isMoving: false,
+                isMoving2: "1",
 
             }
 
